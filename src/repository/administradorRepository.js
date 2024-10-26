@@ -33,7 +33,7 @@ export async function validarUsuario(pessoa) {
     const comando = `
     select id,
     cpf
-    from tb_adiminstrador
+    from tb_administrador
     where 
     cpf =? 
     and senha = ?
