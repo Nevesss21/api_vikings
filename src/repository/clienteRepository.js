@@ -4,12 +4,12 @@ import con from "./connection.js";
 
 export async function inserirCliente(cliente){
     const comando = `   
-    INSERT INTO tb_cliente (nome, cpf, genero, idade, telefone, email, data_cliente, ideia)
-           VALUES(?, ?, ?, ?, ?, ?, ?, ?);
+    INSERT INTO tb_cliente (nome, cpf, genero, idade, telefone, email, ideia)
+           VALUES( ?, ?, ?, ?, ?, ?, ?);
         `;
 
     let resposta = await con.query(comando,[cliente.nome,cliente.cpf,cliente.genero,cliente.idade, 
-        cliente.telefone, cliente.email, cliente.data, cliente.ideia]);
+        cliente.telefone, cliente.email, cliente.ideia]);
     let info = resposta[0];
 
     return info.insertId;
