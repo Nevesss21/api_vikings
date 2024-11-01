@@ -25,7 +25,6 @@ export async function conusltarMarcar(){
         c.idade,
         c.telefone,
         c.email,
-        c.data_cliente,
         c.ideia AS cliente_ideia
     FROM 
         tb_cliente c

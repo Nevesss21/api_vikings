@@ -10,7 +10,6 @@ export async function conusltarSolicitacao(){
         c.idade,
         c.telefone,
         c.email,
-        c.data_cliente,
         c.ideia
     FROM 
         tb_solicitacao s

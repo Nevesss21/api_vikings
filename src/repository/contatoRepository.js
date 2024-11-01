@@ -14,3 +14,6 @@ export async function inserirContato(contato){
 
     return info.insertId;
 }
+
+
+//criar no banco essa tb

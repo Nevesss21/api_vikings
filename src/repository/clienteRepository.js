@@ -24,7 +24,6 @@ export async function conusltarCliente(){
                idade,
                telefone,
                email,
-               data_cliente,
                ideia        
           from tb_cliente;
     `;
@@ -44,7 +43,6 @@ export async function alterarCliente(id, cliente){
                idade = ?,
                telefone = ?,
                email = ?,
-               data_cliente = ?,
                ideia = ?
          where id = ?;
     `;
