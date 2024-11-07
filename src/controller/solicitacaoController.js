@@ -16,5 +16,17 @@ endpoints.get('/solicitar/', async (req, resp) =>{
         })
     }
 })
+endpoints.get('/solicitar-cpf/', async (req, resp) =>{
+    try {
+
+        let registros = await db.conusltarSolicitacaoCpf();
+        resp.send(registros)  
+        
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
 
 export default endpoints;
