@@ -20,7 +20,7 @@ endpoints.get('/marcar/', async (req, resp) =>{
 endpoints.post('/marcar/', async (req, resp) =>{
     try {
         let consulta = req.body;
-        let id = await db.inserirCliente(consulta);
+        let id = await db.inserirConsulta(consulta);
 
         resp.send({
             novoId: id

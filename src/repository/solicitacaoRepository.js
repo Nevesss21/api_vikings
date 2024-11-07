@@ -1,7 +1,7 @@
 import con from "./connection.js";
 
 
-export async function conusltarSolicitacao(){
+export async function conusltarSolicitacao(id){
     const comando = `
         SELECT 
         c.nome,
@@ -14,17 +14,18 @@ export async function conusltarSolicitacao(){
     FROM 
         tb_solicitacao s
     JOIN 
-        tb_cliente c ON s.fk_id_cliente = c.id;
+        tb_cliente c ON s.fk_id_cliente = ?;
     `;
 
-    let resposta = await con.query(comando);
-    let registros = resposta[0];
+    let resposta = await con.query(comando, [id]);
+    let registros = resposta[0][0];
 
     return registros;
 }
 export async function conusltarSolicitacaoCpf(){
     const comando = `
        SELECT 
+            c.id,
             c.nome,
             c.cpf
        FROM 

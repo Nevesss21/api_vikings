@@ -4,10 +4,10 @@ import { Router } from 'express';
 const endpoints = Router();
 
 
-endpoints.get('/solicitar/', async (req, resp) =>{
+endpoints.get('/solicitar/:id', async (req, resp) =>{
     try {
-
-        let registros = await db.conusltarSolicitacao();
+        let id = req.params.id
+        let registros = await db.conusltarSolicitacao(id);
         resp.send(registros)  
         
     } catch (err) {
