@@ -28,5 +28,19 @@ endpoints.get('/solicitar-cpf/', async (req, resp) =>{
         })
     }
 })
+endpoints.post('/solicitar/', async (req, resp) =>{
+    try {
+        let solicitacao = req.body;
+        let id = await db.inserirSolicitacao(solicitacao);
+
+        resp.send({
+            novoId: id
+        })        
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
 
 export default endpoints;

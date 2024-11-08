@@ -18,6 +18,7 @@ export async function inserirSecao(secao){
 export async function conusltarSecao(){
     const comando = `
         SELECT 
+        c.id,
         c.nome,
         c.cpf,
         a.data_consulta,
