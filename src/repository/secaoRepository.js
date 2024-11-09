@@ -37,21 +37,6 @@ export async function conusltarSecao(){
     return registros;
 }
 
-export async function alterarSecao(id, consulta){
-    const comando = `
-    update tb_sessao
-    set anotacoes = ?,
-    situacao =?
-    where id = ?;
-    `;
-    let resposta = await con.query(comando,[consulta.data, consulta.hora, consulta.preco, consulta.id, id]);
-    let info = resposta[0];
-
-    return info.affectedRows;
-}
-
-
-
 export async function removerSecao(id){
     const comando = `
     delete from tb_secao

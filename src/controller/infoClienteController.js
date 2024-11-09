@@ -19,4 +19,36 @@ endpoints.post('/info-cliente/', async (req, resp) =>{
     }
 })
 
+endpoints.put('/info-cliente/:id', async (req, resp) =>{
+    try {
+        let id = req.params.id;
+        let info = req.body;
+
+        let linhasAfetadas = await db.alterarInfo(id, info);
+        if(linhasAfetadas >= 1){
+            resp.send();
+        }
+        else {
+            resp.status(404).send({ erro: 'nenhum registro encontrado '})
+        } 
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
+endpoints.post('/infocliente/', async (req, resp) =>{
+    try {
+        let informacao = req.body
+        let registros = await db.conusltarInfo(informacao);
+        resp.send(registros)  
+        
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
 export default endpoints;
