@@ -38,17 +38,5 @@ endpoints.put('/info-cliente/:id', async (req, resp) =>{
     }
 })
 
-endpoints.post('/infocliente/', async (req, resp) =>{
-    try {
-        let informacao = req.body
-        let registros = await db.conusltarInfo(informacao);
-        resp.send(registros)  
-        
-    } catch (err) {
-        resp.status(400).send({
-            erro: err.message
-        })
-    }
-})
 
 export default endpoints;

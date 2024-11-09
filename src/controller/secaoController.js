@@ -68,4 +68,17 @@ endpoints.delete('/secao/:id', async (req, resp) =>{
     }
 })
 
+endpoints.post('/secao-pesquisa/', async (req, resp) =>{
+    try {
+        let informacao = req.body
+        let registros = await db.conusltarSessao(informacao);
+        resp.send(registros)  
+        
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
 export default endpoints

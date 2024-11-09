@@ -25,27 +25,3 @@ export async function alterarInfo(id, infoCliente) {
     return info.affectedRows;
 }
 
-export async function conusltarInfo(informacao) {
-    const comando = `
-            SELECT 
-                c.nome,
-                c.cpf,
-                a.data_consulta,
-                a.hora
-            FROM 
-                tb_sessao s
-            JOIN 
-                tb_consulta a ON s.fk_id_consulta = a.id
-            JOIN 
-            tb_cliente c ON s.fk_id_cliente = c.id
-            WHERE 
-            c.nome = ?
-            or
-            c.cpf = ?;
-    `;
-
-    let resposta = await con.query(comando, [informacao.nome, informacao.cpf]);
-    let registros = resposta[0][0];
-
-    return registros;
-}
