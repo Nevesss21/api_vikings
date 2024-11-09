@@ -9,7 +9,7 @@ export async function inserirSecao(secao){
  
         `;
 
-    let resposta = await con.query(comando,[secao.idConuslta, secao.idCliente]);
+    let resposta = await con.query(comando,[secao.idConsulta, secao.idCliente]);
     let info = resposta[0];
 
     return info.insertId;
