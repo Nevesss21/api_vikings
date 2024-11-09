@@ -4,12 +4,12 @@ import con from "./connection.js";
 
 export async function inserirSecao(secao){
     const comando = `   
-    INSERT INTO tb_sessao (anotacoes, situacao, fk_id_consulta,  fk_id_cliente) 
-    VALUES(?, ?, ?, ?);
+    INSERT INTO tb_sessao (fk_id_consulta,  fk_id_cliente) 
+    VALUES(?, ?);
  
         `;
 
-    let resposta = await con.query(comando,[secao.anotacoes, secao.situacao, secao.idConuslta, secao.idCliente]);
+    let resposta = await con.query(comando,[secao.idConuslta, secao.idCliente]);
     let info = resposta[0];
 
     return info.insertId;
