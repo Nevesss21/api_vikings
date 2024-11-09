@@ -30,8 +30,27 @@ export async function conusltarCliente(){
 
     let resposta = await con.query(comando);
     let registros = resposta[0];
-
     return registros;
+}
+
+export async function conusltarClienteId(id){
+    const comando = `
+        select id,
+               nome,
+               cpf,
+               genero,
+               idade,
+               telefone,
+               email,
+               ideia        
+          from tb_cliente
+          where id = ?;
+    `;
+
+    let resposta = await con.query(comando, [id]);
+    let registros = resposta[0];
+
+    return registros[0];
 }
 
 export async function alterarCliente(id, cliente){

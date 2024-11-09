@@ -3,11 +3,23 @@ import * as db from '../repository/clienteRepository.js'
 import { Router } from 'express';
 const endpoints = Router();
 
-
 endpoints.get('/cliente/', async (req, resp) =>{
     try {
-
+    
         let registros = await db.conusltarCliente();
+        resp.send(registros)  
+        
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
+endpoints.get('/cliente/:id', async (req, resp) =>{
+    try {
+        let id = req.params.id
+        let registros = await db.conusltarClienteId(id);
         resp.send(registros)  
         
     } catch (err) {
