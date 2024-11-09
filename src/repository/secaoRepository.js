@@ -1,7 +1,5 @@
 import con from "./connection.js";
 
-
-
 export async function inserirSecao(secao){
     const comando = `   
     INSERT INTO tb_sessao (fk_id_consulta,  fk_id_cliente) 
