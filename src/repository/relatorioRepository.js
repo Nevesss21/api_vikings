@@ -3,10 +3,10 @@ import con from "./connection.js";
 
 export async function inserirRelatorio(relatorio) {
     const comando = `   
-        INSERT INTO tb_relatorio (data, id_criar, total_pessoas, renda, masculino, feminino, outro, maior, menor)
-            VALUES (? ,?, ?, ?, ?, ?, ?, ?, ?);   
+        INSERT INTO tb_relatorio (data, total_pessoas, renda, masculino, feminino, outro, maior, menor)
+            VALUES (CURDATE(), ?, ?, ?, ?, ?, ?, ?);   
         `;
-    let resposta = await con.query(comando, [relatorio.data, relatorio.id, relatorio.pessoas, relatorio.renda, relatorio.masculino, relatorio.feminino, relatorio.outro, relatorio.maior, relatorio.menor]);
+    let resposta = await con.query(comando, [relatorio.pessoas, relatorio.renda, relatorio.masculino, relatorio.feminino, relatorio.outro, relatorio.maior, relatorio.menor]);
     let info = resposta[0];
 
     return info.insertId;
