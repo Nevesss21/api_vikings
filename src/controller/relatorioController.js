@@ -17,6 +17,20 @@ endpoints.get('/relatorio/', async (req, resp) =>{
     }
 })
 
+endpoints.get('/relatorio-data/:id', async (req, resp) =>{
+    try {
+
+        let id = req.params.id
+        let registros = await db.conusltarRelatorioData(id);
+        resp.send(registros)  
+        
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
 endpoints.post('/relatorio/', async (req, resp) =>{
     try {
         let relatorio = req.body;

@@ -14,18 +14,35 @@ export async function inserirRelatorio(relatorio) {
 
 export async function conusltarRelatorio() {
     const comando = `
-        SELECT 
-            COUNT(CASE WHEN genero = 'Feminino' AND marcado = true THEN 1 END) AS quantidade_feminino,
-            COUNT(CASE WHEN genero = 'Masculino' AND marcado = true THEN 1 END) AS quantidade_masculino,
-            COUNT(CASE WHEN genero = 'Outro' AND marcado = true THEN 1 END) AS quantidade_outro,
-            COUNT(*) AS total_pessoas,
-            (SELECT SUM(preco) FROM tb_consulta) AS renda_final,
-            COUNT(CASE WHEN idade >= 18 AND marcado = true THEN 1 END) AS idade_igual_18,
-            COUNT(CASE WHEN idade < 18 AND marcado = true THEN 1 END) AS idade_18
-        FROM tb_cliente;
+     SELECT 
+    c.id,
+    COUNT(CASE WHEN c.genero = 'Feminino' AND c.marcado = true THEN 1 END) AS quantidade_feminino,
+    COUNT(CASE WHEN c.genero = 'Masculino' AND c.marcado = true THEN 1 END) AS quantidade_masculino,
+    COUNT(CASE WHEN c.genero = 'Outro' AND c.marcado = true THEN 1 END) AS quantidade_outro,
+    COUNT(*) AS total_pessoas,
+    (SELECT SUM(preco) FROM tb_consulta) AS renda_final,
+    COUNT(CASE WHEN c.idade >= 18 AND c.marcado = true THEN 1 END) AS idade_igual_18,
+    COUNT(CASE WHEN c.idade < 18 AND c.marcado = true THEN 1 END) AS idade_18
+FROM 
+    tb_cliente AS c
+GROUP BY 
+    c.id;
+
     `;
 
     let resposta = await con.query(comando);
+    let registros = resposta[0];
+
+    return registros[0];
+}
+
+export async function conusltarRelatorioData(id) {
+    const comando = `
+       SELECT id,data FROM tb_relatorio
+        where id = ?;
+    `;
+
+    let resposta = await con.query(comando, [id]);
     let registros = resposta[0];
 
     return registros[0];
