@@ -26,7 +26,8 @@ export async function conusltarSecao(){
     JOIN 
         tb_consulta a ON s.fk_id_consulta = a.id
     JOIN 
-    tb_cliente c ON s.fk_id_cliente = c.id;
+    tb_cliente c ON s.fk_id_cliente = c.id
+    where c.marcado = true;
     `;
 
     let resposta = await con.query(comando);

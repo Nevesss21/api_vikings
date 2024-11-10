@@ -63,5 +63,22 @@ endpoints.put('/cliente/:id', async (req, resp) =>{
     }
 })
 
+endpoints.put('/marcar/:id', async (req, resp) =>{
+    try {
+        let id = req.params.id;
+
+        let linhasAfetadas = await db.consultaMarcada(id);
+        if(linhasAfetadas >= 1){
+            resp.send();
+        }
+        else {
+            resp.status(404).send({ erro: 'nenhum registro encontrado '})
+        } 
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
 
 export default endpoints

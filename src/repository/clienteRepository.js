@@ -4,8 +4,8 @@ import con from "./connection.js";
 
 export async function inserirCliente(cliente){
     const comando = `   
-    INSERT INTO tb_cliente (nome, cpf, genero, idade, telefone, email, ideia)
-           VALUES( ?, ?, ?, ?, ?, ?, ?);
+    INSERT INTO tb_cliente (nome, cpf, genero, idade, telefone, email, ideia, marcado)
+           VALUES( ?, ?, ?, ?, ?, ?, ?, false);
         `;
 
     let resposta = await con.query(comando,[cliente.nome,cliente.cpf,cliente.genero,cliente.idade, 
@@ -25,7 +25,8 @@ export async function conusltarCliente(){
                telefone,
                email,
                ideia        
-          from tb_cliente;
+          from tb_cliente
+          where marcado = false;
     `;
 
     let resposta = await con.query(comando);
@@ -67,6 +68,18 @@ export async function alterarCliente(id, cliente){
     `;
     let resposta = await con.query(comando,[cliente.nome,cliente.cpf,cliente.genero,cliente.idade, 
         cliente.telefone, cliente.email, cliente.data, cliente.ideia, id]);
+    let info = resposta[0];
+
+    return info.affectedRows;
+}
+
+export async function consultaMarcada(id){
+    const comando = `
+        update tb_cliente
+        set marcado = true
+        where id = ?;
+    `;
+    let resposta = await con.query(comando,[id]);
     let info = resposta[0];
 
     return info.affectedRows;
