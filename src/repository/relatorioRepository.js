@@ -28,5 +28,5 @@ export async function conusltarRelatorio() {
     let resposta = await con.query(comando);
     let registros = resposta[0];
 
-    return registros;
+    return registros[0];
 }
