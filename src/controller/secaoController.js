@@ -16,6 +16,19 @@ endpoints.get('/secao/', async (req, resp) =>{
         })
     }
 })
+endpoints.get('/secao/:id', async (req, resp) =>{
+    try {
+        let id = req.params.id
+
+        let registros = await db.conusltarSecaoId(id);
+        resp.send(registros)  
+        
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
 
 endpoints.post('/secao/', async (req, resp) =>{
     try {

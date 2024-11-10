@@ -34,6 +34,29 @@ export async function conusltarSecao(){
 
     return registros;
 }
+export async function conusltarSecaoId(id){
+    const comando = `
+        SELECT 
+        c.id,
+        c.nome,
+        c.cpf,
+        a.data_consulta,
+        a.hora
+    FROM 
+        tb_sessao s
+    JOIN 
+        tb_consulta a ON s.fk_id_consulta = a.id
+    JOIN 
+    tb_cliente c ON s.fk_id_cliente = c.id
+    where
+    c.id = ?
+    `;
+
+    let resposta = await con.query(comando, [id]);
+    let registros = resposta[0];
+
+    return registros;
+}
 
 export async function removerSecao(id){
     const comando = `
