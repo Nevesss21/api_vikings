@@ -6,6 +6,7 @@ import secaoContoller from './controller/secaoController.js'
 import solicitacaoController from './controller/solicitacaoController.js'
 import contatoController from './controller/contatoController.js'
 import infoClienteController from './controller/infoClienteController.js'
+import criarConntroller from './controller/criarController.js'
 
 
 export default function adicionarRotas(servidor){
@@ -17,4 +18,5 @@ export default function adicionarRotas(servidor){
     servidor.use(solicitacaoController);
     servidor.use(contatoController);
     servidor.use(infoClienteController);
+    servidor.use(criarConntroller);
 }
