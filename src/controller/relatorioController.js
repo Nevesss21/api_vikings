@@ -17,14 +17,44 @@ endpoints.get('/relatorio/', async (req, resp) =>{
     }
 })
 
-endpoints.get('/relatorio-data/:id', async (req, resp) =>{
+endpoints.get('/relatorio-data/', async (req, resp) =>{
     try {
 
-        let id = req.params.id
-        let registros = await db.conusltarRelatorioData(id);
+        let registros = await db.conusltarRelatorioData();
         resp.send(registros)  
         
     } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+endpoints.get('/relatorio-id/:id', async (req, resp) =>{
+    try {
+        let id = req.params.id;
+        let registros = await db.conusltarRelatorioPorId(id);
+        resp.send(registros)  
+        
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
+endpoints.delete('/apagar-data/:id', async (req, resp) =>{
+    try {
+        let id = req.params.id;
+
+        let linhasAfetadas = await db.deletarRelatorioData(id);
+        if (linhasAfetadas >= 1) {
+            resp.send();
+        }
+        else {
+            resp.status(404).send({ erro: 'Nenhum registro encontrado' })
+        }
+    }
+    catch (err) {
         resp.status(400).send({
             erro: err.message
         })
