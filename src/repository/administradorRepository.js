@@ -1,30 +1,32 @@
 import con from "./connection.js";
+import crypto from "crypto-js"
 
-
-export async function inserirAdm(adm){
+export async function inserirAdm(adm) {
     const comando = `   
     INSERT INTO tb_administrador (cpf, email, senha)
     VALUES(?, ?, ?);
     
         `;
-    let resposta = await con.query(comando,[adm.cpf, adm.email, adm.senha]);
-    let info = resposta[0];
 
+    let hash = crypto.SHA256(adm.senha).toString();
+    let resposta = await con.query(comando, [adm.cpf, adm.email, hash]);
+    let info = resposta[0];
     return info.insertId;
 }
 
 
 
-export async function alterarAdm(id, adm){
+export async function alterarAdm(id, adm) {
     const comando = `
     update tb_administrador
     set
     senha = ?
     where id = ?;
     `;
-    let resposta = await con.query(comando,[adm.senha, id]);
+    
+    let hash = crypto.SHA256(adm.senha).toString();
+    let resposta = await con.query(comando, [hash, id]);
     let info = resposta[0];
-
     return info.affectedRows;
 }
 
@@ -38,7 +40,8 @@ export async function validarUsuario(pessoa) {
     cpf =? 
     and senha = ?
     `;
-    
-    let registros = await con.query(comando, [pessoa.cpf, pessoa.senha])
+
+    let hash = crypto.SHA256(pessoa.senha).toString();
+    let registros = await con.query(comando, [pessoa.cpf, hash])
     return registros[0][0];
 }
