@@ -61,7 +61,7 @@ export async function conusltarSecaoId(id){
 
 export async function removerSecao(id){
     const comando = `
-    delete from tb_secao
+    delete from tb_sessao
     where id = ?;
     `;
 
