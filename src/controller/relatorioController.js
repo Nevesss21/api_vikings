@@ -41,6 +41,18 @@ endpoints.get('/relatorio-renda/:id', async (req, resp) =>{
         })
     }
 })
+endpoints.get('/relatorio-idade/:id', async (req, resp) =>{
+    try {
+        let id = req.params.id;
+        let registros = await db.conusltarRelatorioIdade(id);
+        resp.send(registros)  
+        
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
 endpoints.get('/relatorio-genero/:id', async (req, resp) =>{
     try {
         let id = req.params.id;
