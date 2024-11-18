@@ -54,34 +54,31 @@ export async function conusltarRelatorioPorId(id) {
     return registros;
 }
 
-export async function conusltarRelatorioPorRenda(id) {
+export async function conusltarRelatorioPorRenda() {
     const comando = `
-        select id, renda from tb_relatorio
-        where id = ?;
+        select id, renda from tb_relatorio;
     `;
 
-    let resposta = await con.query(comando, [id]);
+    let resposta = await con.query(comando);
     let registros = resposta[0];
 
     return registros;
 }
 
-export async function conusltarRelatorioGenero(id) {
+export async function conusltarRelatorioGenero() {
     const comando = `
-     select id, total_pessoas, masculino, feminino, outro from tb_relatorio
-     where id = ?;
+     select id, total_pessoas, masculino, feminino, outro from tb_relatorio;
     `;
-    let resposta = await con.query(comando, [id]);
+    let resposta = await con.query(comando);
     let registros = resposta[0];
 
     return registros;
 }
-export async function conusltarRelatorioIdade(id) {
+export async function conusltarRelatorioIdade() {
     const comando = `
-     select id, total_pessoas, maior,  menor from tb_relatorio
-     where id = ?;
+     select id, total_pessoas, maior,  menor from tb_relatorio;
     `;
-    let resposta = await con.query(comando, [id]);
+    let resposta = await con.query(comando);
     let registros = resposta[0];
 
     return registros;

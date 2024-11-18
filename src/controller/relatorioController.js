@@ -29,10 +29,9 @@ endpoints.get('/relatorio-data/', async (req, resp) =>{
         })
     }
 })
-endpoints.get('/relatorio-renda/:id', async (req, resp) =>{
+endpoints.get('/relatorio-renda/', async (req, resp) =>{
     try {
-        let id = req.params.id;
-        let registros = await db.conusltarRelatorioPorRenda(id);
+        let registros = await db.conusltarRelatorioPorRenda();
         resp.send(registros)  
         
     } catch (err) {
@@ -41,10 +40,9 @@ endpoints.get('/relatorio-renda/:id', async (req, resp) =>{
         })
     }
 })
-endpoints.get('/relatorio-idade/:id', async (req, resp) =>{
+endpoints.get('/relatorio-idade/', async (req, resp) =>{
     try {
-        let id = req.params.id;
-        let registros = await db.conusltarRelatorioIdade(id);
+        let registros = await db.conusltarRelatorioIdade();
         resp.send(registros)  
         
     } catch (err) {
@@ -53,10 +51,9 @@ endpoints.get('/relatorio-idade/:id', async (req, resp) =>{
         })
     }
 })
-endpoints.get('/relatorio-genero/:id', async (req, resp) =>{
+endpoints.get('/relatorio-genero/', async (req, resp) =>{
     try {
-        let id = req.params.id;
-        let registros = await db.conusltarRelatorioGenero(id);
+        let registros = await db.conusltarRelatorioGenero();
         resp.send(registros)  
         
     } catch (err) {
