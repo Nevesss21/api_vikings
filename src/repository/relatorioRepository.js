@@ -76,13 +76,7 @@ export async function conusltarRelatorioGenero() {
 }
 export async function conusltarRelatorioIdade() {
     const comando = `
-   SELECT 
-    SUM(total_pessoas) AS total_pessoas_acumulado,
-    SUM(masculino) AS total_masculino,
-    SUM(feminino) AS total_feminino,
-    SUM(outro) AS total_outro
-FROM 
-    tb_relatorio;
+     select id, total_pessoas, maior,  menor from tb_relatorio;
     `;
     let resposta = await con.query(comando);
     let registros = resposta[0];
