@@ -40,10 +40,9 @@ endpoints.get('/relatorio-renda/', async (req, resp) =>{
         })
     }
 })
-endpoints.get('/relatorio-idade/:id', async (req, resp) =>{
+endpoints.get('/relatorio-idade/', async (req, resp) =>{
     try {
-        let id = req.params.id;
-        let registros = await db.conusltarRelatorioIdade(id);
+        let registros = await db.conusltarRelatorioIdade();
         resp.send(registros)  
         
     } catch (err) {
