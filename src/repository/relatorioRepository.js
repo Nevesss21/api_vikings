@@ -76,13 +76,17 @@ export async function conusltarRelatorioGenero() {
 }
 export async function conusltarRelatorioIdade() {
     const comando = `
-     SELECT 
-        COUNT(total_pessoas) AS total_pessoas_acumulado,
-        COUNT(masculino) AS total_masculino,
-        COUNT(feminino) AS total_feminino,
-        COUNT(outro) AS total_outro
+    SELECT 
+        data,
+        total_pessoas,
+        masculino,
+        feminino,
+        outro
     FROM 
-        tb_relatorio;
+        tb_relatorio
+    WHERE 
+        data = (SELECT MAX(data) FROM tb_relatorio);
+
 
     `;
     let resposta = await con.query(comando);
