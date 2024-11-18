@@ -64,6 +64,16 @@ export async function conusltarRelatorioPorRenda() {
     return registros;
 }
 
+export async function conusltarRelatorioGenero() {
+    const comando = `
+     select total_pessoas, masculino, feminino, outro from tb_relatorio;
+    `;
+    let resposta = await con.query(comando);
+    let registros = resposta[0];
+
+    return registros;
+}
+
 export async function deletarRelatorioData(id) {
     const comando = `
         delete from tb_relatorio
