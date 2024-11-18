@@ -74,22 +74,11 @@ export async function conusltarRelatorioGenero() {
 
     return registros;
 }
-export async function conusltarRelatorioIdade() {
+export async function conusltarRelatorioIdade(id) {
     const comando = `
-    SELECT 
-        data,
-        total_pessoas,
-        masculino,
-        feminino,
-        outro
-    FROM 
-        tb_relatorio
-    WHERE 
-        data = (SELECT MAX(data) FROM tb_relatorio);
-
-
+     select id, total_pessoas, maior,  menor from tb_relatorio;
     `;
-    let resposta = await con.query(comando);
+    let resposta = await con.query(comando, [id]);
     let registros = resposta[0];
 
     return registros;
