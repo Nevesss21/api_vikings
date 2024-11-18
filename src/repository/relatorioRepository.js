@@ -77,7 +77,6 @@ export async function conusltarRelatorioGenero() {
 export async function conusltarRelatorioIdade() {
     const comando = `
      SELECT 
-        id,
         COUNT(total_pessoas) AS total_pessoas_acumulado,
         COUNT(masculino) AS total_masculino,
         COUNT(feminino) AS total_feminino,
