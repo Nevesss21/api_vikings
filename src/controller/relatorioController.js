@@ -41,6 +41,17 @@ endpoints.get('/relatorio-id/:id', async (req, resp) =>{
         })
     }
 })
+endpoints.get('/relatorio-renda/', async (req, resp) =>{
+    try {
+        let registros = await db.conusltarRelatorioPorRenda();
+        resp.send(registros)  
+        
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
 
 endpoints.delete('/apagar-data/:id', async (req, resp) =>{
     try {

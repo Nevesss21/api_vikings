@@ -53,6 +53,16 @@ export async function conusltarRelatorioPorId(id) {
 
     return registros;
 }
+export async function conusltarRelatorioPorRenda() {
+    const comando = `
+        select id, renda from tb_relatorio;
+    `;
+
+    let resposta = await con.query(comando);
+    let registros = resposta[0];
+
+    return registros;
+}
 
 export async function deletarRelatorioData(id) {
     const comando = `
