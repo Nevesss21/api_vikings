@@ -76,7 +76,8 @@ export async function conusltarRelatorioGenero() {
 }
 export async function conusltarRelatorioIdade(id) {
     const comando = `
-     select id, total_pessoas, maior,  menor from tb_relatorio;
+     select id, total_pessoas, maior,  menor from tb_relatorio
+     where id = ?;
     `;
     let resposta = await con.query(comando, [id]);
     let registros = resposta[0];
