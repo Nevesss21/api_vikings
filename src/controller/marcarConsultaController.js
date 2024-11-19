@@ -35,9 +35,7 @@ endpoints.post('/marcar/', async (req, resp) =>{
 endpoints.put('/consulta/:id', async (req, resp) =>{
     try {
         let id = req.params.id;
-        let consulta = req.body;
-
-        let linhasAfetadas = await db.alterarConsulta(id, consulta);
+        let linhasAfetadas = await db.alterarConsulta(id);
         if(linhasAfetadas >= 1){
             resp.send();
         }
@@ -50,6 +48,5 @@ endpoints.put('/consulta/:id', async (req, resp) =>{
         })
     }
 })
-
 
 export default endpoints

@@ -1,11 +1,9 @@
 import con from "./connection.js";
 
-
-
 export async function inserirConsulta(consulta){
     const comando = `   
-    INSERT INTO tb_consulta ( data_consulta, hora, preco, id_cliente)
-    VALUES(?, ?,?, ?);
+    INSERT INTO tb_consulta ( data_consulta, hora, preco, marcado, id_cliente)
+    VALUES(?, ?, ?, false,?);
 
         `;
 
@@ -39,15 +37,13 @@ export async function conusltarMarcar(){
     return registros;
 }
 
-export async function alterarConsulta(id, consulta){
+export async function alterarConsulta(id){
     const comando = `
         update tb_consulta
-        set data_consulta = ?,
-            hora = ?,
-            preco = ?
-    where id =?;
+        set marcado = true
+        where id = ?;
     `;
-    let resposta = await con.query(comando,[consulta.data, consulta.hora, consulta.preco, consulta.id, id]);
+    let resposta = await con.query(comando, [id]);
     let info = resposta[0];
 
     return info.affectedRows;
