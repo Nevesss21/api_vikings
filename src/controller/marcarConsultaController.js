@@ -35,27 +35,7 @@ endpoints.post('/marcar/', async (req, resp) =>{
 endpoints.put('/consulta/:id', async (req, resp) =>{
     try {
         let id = req.params.id;
-        let consulta = req.body;
-
-        let linhasAfetadas = await db.alterarConsulta(id, consulta);
-        if(linhasAfetadas >= 1){
-            resp.send();
-        }
-        else {
-            resp.status(404).send({ erro: 'nenhum registro encontrado '})
-        } 
-    } catch (err) {
-        resp.status(400).send({
-            erro: err.message
-        })
-    }
-})
-
-endpoints.put('/confirmar/:id', async (req, resp) =>{
-    try {
-        let id = req.params.id;
-
-        let linhasAfetadas = await db.Confirmacao(id);
+        let linhasAfetadas = await db.alterarConsulta(id);
         if(linhasAfetadas >= 1){
             resp.send();
         }
