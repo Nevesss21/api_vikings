@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-export async function enviarEmail(email) {
+export async function enviarEmail(email, id) {
   // Configuração do Nodemailer
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -18,8 +18,9 @@ export async function enviarEmail(email) {
     html: `
       <p>Olá,</p>
       <p>Clique no link abaixo para confirmar sua presença na sessão:</p>
-      <a href="http://4.172.207.208:3042/confirmar">Confirmar Presença</a>
+      <a state={{ id: ${id} }} href="http://4.172.207.208:3042/confirmar">Confirmar Presença</a>
     `,
+  
   };
   
 

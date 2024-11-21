@@ -5,15 +5,15 @@ import * as db from "../repository/emailRepository.js";
 
 endpoints.post("/email", async (req, resp) => {
   try {
-    const { email } = req.body;
+    const { email, id} = req.body;
 
     // Validação dos dados
-    if (!email) {
+    if (!email || !id) {
       throw new Error("Dados incompletos. Informe 'email' e 'link'.");
     }
 
     // Chama o repository para enviar o e-mail
-    await db.enviarEmail(email);
+    await db.enviarEmail(email, id);
 
     resp.send({
       message: "E-mail enviado com sucesso!",
