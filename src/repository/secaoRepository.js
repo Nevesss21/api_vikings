@@ -89,7 +89,6 @@ export async function conusltarSessao(informacao) {
             or
             c.cpf = ?;
     `;
-
     let resposta = await con.query(comando, [informacao.nome, informacao.cpf]);
     let registros = resposta[0][0];
 
