@@ -4,8 +4,8 @@ import con from "./connection.js";
 
 export async function inserirConsulta(consulta){
     const comando = `   
-    INSERT INTO tb_consulta ( data_consulta, hora, preco, id_cliente)
-    VALUES(?, ?,?, ?);
+    INSERT INTO tb_consulta ( data_consulta, hora, preco, id_cliente, marcado)
+    VALUES(?, ?,?, ?, false);
 
         `;
 
@@ -48,6 +48,18 @@ export async function alterarConsulta(id, consulta){
     where id =?;
     `;
     let resposta = await con.query(comando,[consulta.data, consulta.hora, consulta.preco, consulta.id, id]);
+    let info = resposta[0];
+
+    return info.affectedRows;
+}
+
+export async function Confirmacao(id){
+    const comando = `
+        update tb_consulta
+        set marcado = true
+        where id = ?;
+    `;
+    let resposta = await con.query(comando,[id]);
     let info = resposta[0];
 
     return info.affectedRows;
