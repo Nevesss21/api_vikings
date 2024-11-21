@@ -61,7 +61,7 @@ export async function conusltarRelatorioPorRenda() {
     `;
 
     let resposta = await con.query(comando);
-    let registros = resposta[0][0];
+    let registros = resposta[0];
 
     return registros;
 }
@@ -72,7 +72,7 @@ export async function conusltarRelatorioGenero() {
       order by data desc;
     `;
     let resposta = await con.query(comando);
-    let registros = resposta[0][0];
+    let registros = resposta[0];
 
     return registros;
 }
@@ -82,7 +82,7 @@ export async function conusltarRelatorioIdade() {
      order by data desc;
     `;
     let resposta = await con.query(comando);
-    let registros = resposta[0][0];
+    let registros = resposta[0];
 
     return registros;
 }
