@@ -61,9 +61,9 @@ export async function conusltarRelatorioPorRenda() {
     `;
 
     let resposta = await con.query(comando);
-    let registros = resposta[0];
+    let registros = resposta[0][0];
 
-    return registros[0];
+    return registros;
 }
 
 export async function conusltarRelatorioGenero() {
@@ -72,9 +72,9 @@ export async function conusltarRelatorioGenero() {
       order by data desc;
     `;
     let resposta = await con.query(comando);
-    let registros = resposta[0];
+    let registros = resposta[0][0];
 
-    return registros[0];
+    return registros;
 }
 export async function conusltarRelatorioIdade() {
     const comando = `
@@ -82,9 +82,9 @@ export async function conusltarRelatorioIdade() {
      order by data desc;
     `;
     let resposta = await con.query(comando);
-    let registros = resposta[0];
+    let registros = resposta[0][0];
 
-    return registros[0];
+    return registros;
 }
 
 export async function deletarRelatorioData(id) {
