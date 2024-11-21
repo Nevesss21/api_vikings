@@ -34,7 +34,7 @@ where marcado = true;
 
 export async function conusltarRelatorioData() {
     const comando = `
-       SELECT id,data FROM tb_relatorio;
+       SELECT id, data FROM tb_relatorio;
     `;
 
     let resposta = await con.query(comando);
@@ -56,32 +56,35 @@ export async function conusltarRelatorioPorId(id) {
 
 export async function conusltarRelatorioPorRenda() {
     const comando = `
-        select id, data, renda from tb_relatorio;
+        select id, data, renda from tb_relatorio
+         order by data desc;
     `;
 
     let resposta = await con.query(comando);
     let registros = resposta[0];
 
-    return registros;
+    return registros[0];
 }
 
 export async function conusltarRelatorioGenero() {
     const comando = `
-     select id, data, total_pessoas, masculino, feminino, outro from tb_relatorio;
+     select id, data, total_pessoas, masculino, feminino, outro from tb_relatorio
+      order by data desc;
     `;
     let resposta = await con.query(comando);
     let registros = resposta[0];
 
-    return registros;
+    return registros[0];
 }
 export async function conusltarRelatorioIdade() {
     const comando = `
-     select id, data, total_pessoas, maior,  menor from tb_relatorio;
+     select id, data, total_pessoas, maior,  menor from tb_relatorio
+     order by data desc;
     `;
     let resposta = await con.query(comando);
     let registros = resposta[0];
 
-    return registros;
+    return registros[0];
 }
 
 export async function deletarRelatorioData(id) {
