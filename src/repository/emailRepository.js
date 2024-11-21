@@ -16,9 +16,9 @@ export async function enviarEmail(email, id) {
     to: email, // Destinatário (vem do parâmetro passado)
     subject: "Confirmação de Presença",
     html: `
-      <p>Olá,</p>
+      <p>Olá seu numero é igual a ${id},</p>
       <p>Clique no link abaixo para confirmar sua presença na sessão:</p>
-      <a state=${{ id: id} }href="http://4.172.207.208:3042/confirmar">Confirmar Presença</a>
+      <a href="http://4.172.207.208:3042/confirmar">Confirmar Presença</a>
     `,
   
   };
