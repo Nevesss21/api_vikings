@@ -18,7 +18,7 @@ export async function enviarEmail(email) {
     html: `
       <p>Olá,</p>
       <p>Clique no link abaixo para confirmar sua presença na sessão:</p>
-      <a href="http://4.172.207.208:5042/confirmar">Confirmar Presença</a>
+      <a href="http://4.172.207.208:3042/confirmar">Confirmar Presença</a>
     `,
   };
   
